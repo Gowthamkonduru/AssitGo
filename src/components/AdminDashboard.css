@@ -1,0 +1,184 @@
+.admin-dashboard-pro {
+  padding: 25px;
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Billing Section Styles --- */
+.billing-section {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
+}
+
+.billing-section h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #343a40;
+  font-weight: 600;
+}
+
+.billable-tables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.billable-card {
+  background-color: #e8f5e9; /* Light green background */
+  border: 1px solid #a5d6a7;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.billable-card h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #1b5e20;
+}
+
+.billable-card p {
+  margin: 0 0 15px;
+  color: #388e3c;
+  font-style: italic;
+}
+
+.billable-card button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.billable-card button:hover {
+  background-color: #388e3c;
+}
+
+.no-bills-message {
+  grid-column: 1 / -1; /* Span full width */
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+
+/* --- Analytics Section Styles --- */
+.analytics-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.analytics-section h2 {
+  color: #1a253c;
+  font-weight: 700;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.time-filters button {
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.time-filters button:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.time-filters button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.kpi-card {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-card h4 {
+  color: #6c757d;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.kpi-card p {
+  color: #1a253c;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.main-chart-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+.chart-card {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #343a40;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .chart-wrapper {
+    height: 300px;
+  }
+}
+
+.loading-state, .error-state, .no-data-message {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: #6c757d;
+  font-style: italic;
+}
+

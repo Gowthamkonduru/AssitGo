@@ -1,0 +1,36 @@
+.contact-container {
+  text-align: center;
+  padding: 100px 20px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #e63946;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.contact:hover {
+  background-color: #c72d36;
+}
+
+.contact_us-img {
+  margin-top: 40px;
+  width: 300px;
+  border-radius: 15px;
+  max-width: 90%;
+  height: auto;
+}
+  
+
+

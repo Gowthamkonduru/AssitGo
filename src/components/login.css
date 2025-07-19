@@ -1,0 +1,45 @@
+.login{
+    margin-top: 10%;
+}
+.login li {
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-weight: 600;
+}
+/* Common card style */
+.card {
+  border-radius: 15px;
+  color: white;
+  overflow: hidden;
+}
+
+/* Waiter Card Gradient */
+.waiter .card {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+/* Chef Card Gradient */
+.cheif .card {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #222; /* Darker text for light background */
+}
+
+.cheif .btn {
+  color: white;
+}
+
+/* Admin Card Gradient */
+.admin .card {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+/* Optional: Make button text always readable */
+.card-footer .btn {
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+

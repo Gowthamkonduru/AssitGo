@@ -1,0 +1,103 @@
+.home {
+  position: relative;
+  padding-top: 40vh;
+  min-height: 100vh;
+  background-image: url('/public/home_background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* ✨ Parallax effect */
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+/* === Overlay to darken background for better contrast === */
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+/* === Professional Animation Keyframes === */
+@keyframes fadeInUpZoom {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+    filter: blur(0);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === Elements that animate in === */
+.home-logo,
+.home-summary {
+  animation: fadeInUpZoom 1.3s ease-out both;
+  position: relative;
+  z-index: 1;
+}
+
+.home-summary {
+  animation-delay: 0.5s;
+}
+
+/* === Logo Section === */
+.home-logo {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 2px solid white;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+.logo-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.logo-subtitle {
+  font-size: 16px;
+  font-style: italic;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* === Summary Section === */
+.summary-heading {
+  color: tomato;
+  margin-bottom: 20px;
+}
+
+.home-summary p {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* === Mobile Responsive Adjustments === */
+@media (max-width: 768px) {
+  .home-summary {
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+

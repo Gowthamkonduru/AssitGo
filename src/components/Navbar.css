@@ -1,0 +1,45 @@
+/* Your custom styles for the navigation links */
+.navbar-nav .nav-link-custom {
+  text-decoration: none;
+  font-weight: 600;
+  color: #0077cc;
+  font-size: 17px;
+  padding: 8px 14px !important; /* Use !important to override Bootstrap padding if needed */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: center; /* Center text in mobile view */
+}
+
+.navbar-nav .nav-link-custom:hover {
+  background-color: tomato;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(204, 133, 0, 0.3);
+}
+
+/* Custom style for the Logout button */
+.btn-custom-logout {
+  background-color: transparent;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  font-weight: 600;
+  padding: 6px 18px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  cursor: pointer;
+  width: 100%; /* Make button full-width in mobile view */
+}
+
+/* In larger screens, the button will not be full-width */
+@media (min-width: 992px) {
+  .btn-custom-logout {
+    width: auto;
+  }
+}
+
+.btn-custom-logout:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+

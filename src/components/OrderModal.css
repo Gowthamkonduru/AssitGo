@@ -1,0 +1,132 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 25px 35px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.menu-items-list {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.item-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity-controls button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.quantity-controls span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 25px;
+  text-align: center;
+}
+
+.submit-order-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-order-btn:hover {
+  background-color: #0056b3;
+}
+
+.existing-order-view h4, .new-order-view h4 {
+  font-weight: 600;
+  color: #444;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.order-item-list {
+  list-style: none;
+  padding: 0;
+}
+.order-item-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
