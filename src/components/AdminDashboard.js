@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'; // Import useCallback
+import React, { useState, useEffect, useCallback } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { startOfToday, endOfToday, startOfYesterday, endOfYesterday, startOfMonth, endOfMonth, subMonths } from 'date-fns';
+// We no longer need the date-fns library here, making the component cleaner.
 import './AdminDashboard.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -12,27 +12,15 @@ function AdminDashboard() {
   const [timePeriod, setTimePeriod] = useState('today');
   const [billableTables, setBillableTables] = useState([]);
 
-  // --- THIS IS THE FIX ---
-
-  // This function was missing in a previous version, causing warnings.
-  const getDatesForPeriod = (period) => {
-    switch (period) {
-      case 'yesterday': return { start: startOfYesterday(), end: endOfYesterday() };
-      case 'this_month': return { start: startOfMonth(new Date()), end: endOfMonth(new Date()) };
-      case 'last_month': return { start: startOfMonth(subMonths(new Date(), 1)), end: endOfMonth(subMonths(new Date(), 1)) };
-      default: return { start: startOfToday(), end: endOfToday() };
-    }
-  };
-
-  // Wrap fetchData in useCallback to make it a stable dependency
+  // This is the new, simplified fetch logic.
   const fetchData = useCallback(async (period) => {
     setLoading(true);
-    const { start, end } = getDatesForPeriod(period);
-    const startDate = start.toISOString();
-    const endDate = end.toISOString();
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/advanced-stats?startDate=${startDate}&endDate=${endDate}`);
-      if (!response.ok) throw new Error(`Server responded with status: ${response.status}`);
+      // The URL is now much simpler and more reliable.
+      const response = await fetch(`http://localhost:8080/admin/advanced-stats?period=${period}`);
+      if (!response.ok) {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
       const data = await response.json();
       setStats(data);
     } catch (error) {
@@ -41,11 +29,11 @@ function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  }, []); // The empty dependency array means this function is created only once
+  }, []);
 
   const fetchBillableTables = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/active`);
+      const response = await fetch('http://localhost:8080/orders/active');
       const activeOrders = await response.json();
       const servedTables = activeOrders.reduce((acc, order) => {
         if (order.status === 'Completed') {
@@ -59,18 +47,15 @@ function AdminDashboard() {
     }
   }, []);
 
-  // The useEffect hook now correctly includes its dependencies
   useEffect(() => {
     fetchData(timePeriod);
     fetchBillableTables();
-  }, [timePeriod, fetchData, fetchBillableTables]); // Add fetchData and fetchBillableTables here
-
-  // --- FIX ENDS HERE ---
+  }, [timePeriod, fetchData, fetchBillableTables]);
 
   const handleMarkAsPaid = async (tableNumber) => {
     if (window.confirm(`Are you sure you want to mark Table ${tableNumber} as paid?`)) {
       try {
-        await fetch(`${process.env.REACT_APP_API_URL}/orders/table/${tableNumber}/pay`, { method: 'PUT' });
+        await fetch(`http://localhost:8080/orders/table/${tableNumber}/pay`, { method: 'PUT' });
         alert(`Table ${tableNumber} is now available.`);
         fetchBillableTables();
         fetchData(timePeriod);
@@ -81,8 +66,32 @@ function AdminDashboard() {
     }
   };
 
-  const chartOptions = { /* ... (no changes needed) ... */ };
-  const topSellingData = { /* ... (no changes needed) ... */ };
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Top 5 Selling Items by Quantity' }
+    },
+    scales: { y: { beginAtZero: true } }
+  };
+
+  const topSellingData = {
+    labels: (stats?.topSellingItems || []).map(item => item.name),
+    datasets: [{
+      label: 'Quantity Sold',
+      data: (stats?.topSellingItems || []).map(item => item.quantitySold),
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 1,
+    }],
+  };
 
   return (
     <div className="admin-dashboard-pro">
@@ -139,4 +148,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;  
+export default AdminDashboard;
